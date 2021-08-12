@@ -8,7 +8,7 @@ const PLZFinder = dynamic(() => import('@/components/PLZFinder'), {
   ssr: false,
 });
 
-// Filter-Bereich auf der Seite PLZ-Suche
+// Filter-Bereich auf der Seite PLZ-Suche und SVG-Map PLZ-Bezirke (!)
 export default function FilterZipCode() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
@@ -73,10 +73,7 @@ export default function FilterZipCode() {
               onClick={() => setSearch('')}
               type="button"
               disabled={search === ''}
-            >
-              {/* ACHTUNG: leicht zu übersehen -> im Buton steht ein Mal-Zeichen! */}
-              {/* &times; */}
-            </button>
+            ></button>
           </div>
 
           <div className="gefunden">

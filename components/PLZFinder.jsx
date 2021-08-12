@@ -25,6 +25,7 @@ const defaultZoom = 11;
 // const myTestPosition = { lat: 52.5179, lng: 13.3759 };
 
 /*
+Bereich mit Straßenkarte
 bisher nur Ausgabe aller gefunden PLZ-Bezirke aus der zipcode-Datei
 */
 export default function PLZFinder() {
@@ -59,7 +60,8 @@ export default function PLZFinder() {
         {locations.map(({ zipcode, place, district, latitude, longitude }) => (
           <Marker key={[latitude, longitude]} position={[latitude, longitude]}>
             <Popup>
-              {zipcode} {place} <br /> Bezirk{district}
+              {zipcode} {place} <br />
+              <strong> Bezirk{district} </strong>
             </Popup>
           </Marker>
         ))}

@@ -18,7 +18,7 @@ function Map() {
           <br /> 1. Sie wählen ein PLZ-Gebiet in der grünen Karte und erhalten
           PLZ sowie eine Detail-Ansicht in der Stra&szlig;enkarte.
           <br /> 2. Sie geben direkt eine PLZ in des Eingabefeld ein und
-          erhalten sofort die Detail-Ansicht in der Straßenkarte.
+          erhalten sofort die Detail-Ansicht in der Stra&szlig;enkarte.
         </p>
 
         <section id="plz-map">
