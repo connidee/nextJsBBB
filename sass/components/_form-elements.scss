@@ -28,9 +28,9 @@ a[href^='tel'] {
   justify-content: space-around;
 
   button {
-    height: 1.7rem;
-    background: var(--hover-color);
-    padding: 0 0.5rem;
+    height: 1.1rem;
+    background: transparent;
+    padding: 0;
     margin: 0;
     &:disabled,
     .disabled {

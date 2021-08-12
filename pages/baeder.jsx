@@ -57,6 +57,7 @@ export default function baeder({ grusz, baederWeb }) {
   return (
     <Layout title="Baden gehen... " description="">
       <div className="site-main">
+        <br />
         {grusz}
         {/* <br/>es ist {time} */}
         <br />

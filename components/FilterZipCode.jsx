@@ -75,7 +75,7 @@ export default function FilterZipCode() {
               disabled={search === ''}
             >
               {/* ACHTUNG: leicht zu übersehen -> im Buton steht ein Mal-Zeichen! */}
-              &times;
+              {/* &times; */}
             </button>
           </div>
 
@@ -1457,6 +1457,7 @@ export default function FilterZipCode() {
          -> http://www.dynamicdrive.com/dynamicindex17/ajaxcontent.htm
         */}
         <PLZFinder search={search} />
+        <p>&nbsp;</p>
       </article>
     </>
   );
