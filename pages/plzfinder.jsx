@@ -1,15 +1,7 @@
 import Layout from '../components/Layout';
-import { useEffect, useState } from 'react';
-import { useDebouncedValue } from '../hooks/useDebouncedValue';
 import Filter from '@/components/FilterZipCode';
 
-// ################## Karte mit Markierung aus PLZFinder.jsx ####################
-import dynamic from 'next/dynamic';
-/* dynamisches Laden von: https://nextjs.org/docs/advanced-features/dynamic-import */
-const PLZFinder = dynamic(() => import('@/components/PLZFinder'), {
-  ssr: false,
-});
-
+// als Ersatz für den fehlenden Daten-Import aus
 const zipcode = null;
 
 // ############## Ergebnis-Export -> Anzeige der Berliner Bezirke im Browser
@@ -34,40 +26,6 @@ function Map() {
       </div>
     </Layout>
   );
-}
-
-/* 
-damit alles in der gewünschten Reihenfolge abläuft, 
-muss die asynchrone fetch-function innerhab einer Kapsel-Fkt. aufgerufen werden
-*/
-function useLocationSearch(debouncedSearch, setLocations) {
-  useEffect(() => {
-    // damit die Ortssuche nicht beim ersten Buchstaben losläuft...
-    if (debouncedSearch.length < 2) {
-      // zurücksetzen der Suche für neue Suche
-      setLocations([]);
-      return;
-    }
-    // gekapselte fetch function
-    async function fetchLocations() {
-      try {
-        const response = await fetch(
-          `http://localhost:8000/?search=${debouncedSearch}`
-        );
-        if (!response.ok) {
-          throw new Error('Fehler beim Laden der Daten');
-        }
-        const jsonData = await response.json();
-        setLocations(jsonData);
-        console.log(jsonData);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchLocations();
-    // Programm schlägt als Änderungsoption beide Eingänge vor
-    //
-  }, [debouncedSearch, setLocations]);
 }
 
 export default (zipcode, Map);

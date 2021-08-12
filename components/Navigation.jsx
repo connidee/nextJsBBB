@@ -1,3 +1,4 @@
+// responsive Navi zum Wechseln zwischen den Seiten
 import Link from 'next/link';
 
 export default function Navigation() {

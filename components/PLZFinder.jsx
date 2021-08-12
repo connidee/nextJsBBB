@@ -1,15 +1,20 @@
-//
+/* 
+Teil der PLZ- und Bezirkssuche -> leider nicht fertig geworden
+nach Eingabe einer PLZ oder eines Standortes hätte dieser im Fokus der Straßenkarte erscheinen sollen
+*/
+
 import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import { useToggle } from '../hooks/useToggle';
 
-// ############### Auslesen der zipcode.js-Dateien #############
+/* 
+Auslesen der zipcode.js-Dateien 
+*/
 const plzDataB = require('../library/zipcodes.berlin.json');
-console.log(plzDataB);
+// console.log(plzDataB);
 const plzDataD = require('../library/zipcodes.de.json');
 // console.log(plzDataD);
 
-// // Mitte Deutschlands: "latitude":"51.2125","longitude":"9.4208", zoom = 6
+/* Mitte Deutschlands: "latitude":"51.2125","longitude":"9.4208", zoom = 6 */
 // const defaultCenter = { lat: 51.2125, lng: 9.4208 };
 // const defaultZoom = 6;
 
@@ -19,6 +24,9 @@ const defaultZoom = 11;
 
 // const myTestPosition = { lat: 52.5179, lng: 13.3759 };
 
+/*
+bisher nur Ausgabe aller gefunden PLZ-Bezirke aus der zipcode-Datei
+*/
 export default function PLZFinder() {
   const [mapCenter, setMapCenter] = useState(defaultCenter);
   const [zoom, setZoom] = useState(defaultZoom);

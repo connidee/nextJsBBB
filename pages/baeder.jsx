@@ -1,53 +1,50 @@
+// Seite Berlin geht baden...
 // Quelle: https://newsapi.org/
 // Add geojson: https://egghead.io/lessons/react-add-geojson-location-data-to-a-map-using-markers-and-popups-in-react-leaflet
 
 import Layout from '@/components/Layout';
 import BaederList from '@/components/BaederList';
 
-/* NPM-Module werden ohne Pfad (nur mit Modulname) importiert,
-üblicherweise vor den selbstgeschriebenen Modulen. (Auch die
-Dateiendung fällt weg, hier hat das Modul .js im Namen(!). ) */
-// import length from 'length.js';
-
-// ################## aus standorte.jsx #########################
 import dynamic from 'next/dynamic';
 /* dynamisches Laden von: https://nextjs.org/docs/advanced-features/dynamic-import */
 const LocationFinder = dynamic(() => import('@/components/BadFinder'), {
   ssr: false,
 });
-// ############ Ende aus Standorte.jsx ###################
 
-// const apiKey = process.env.NEWS_API_KEY;
-
-// entweder in der export-Funktion oder schon hier die Daten aus der lokalen Datei auslesen
-// -> const baederData = require('')... -> mühsam
-
+// work-around für leider häufiger nicht verfügbare LaGeSo-Seite
 const baederWebData = require('@/library/berlinerBaeder.json');
 
+//
 export async function getStaticProps() {
   // code, der nur auf dem Server läuft und im Browser nicht zu sehen ist
   let baederWeb = [];
 
-  // Auslesen von im Web bereit gestellten Daten des LaGeSo Berlin
+  /* 
+  Auslesen von im Web bereit gestellten Daten des LaGeSo Berlin
+  bzw. des lokalen Spiegels
+  */
   try {
+    /*
+    auskommentiert wegen Nichtverfügbarkeit der Seite des LaGeSo 
+    -> nicht löschne!!!
+    */
     // const response = await fetch(
     //   // urlWeb
     //   `https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php/index/all.gjson?q=`
     // );
-
     // const baederWebData = await response.json();
 
     baederWeb = baederWebData.features;
 
-    //
+    // wenn das Laden der Daten trotzdem fehlschlägt...
   } catch (error) {
     console.log('Fehler beim Laden der Baederinfos');
   }
 
   return {
     props: {
-      grusz: 'Bitte auch den Wetterbericht beachten: 😛',
-      time: new Date().toLocaleTimeString(),
+      grusz: 'Bitte auch den Wetterbericht beachten: 😉',
+      // time: new Date().toLocaleTimeString(),
       baederWeb,
     },
     revalidate: 10,
@@ -55,19 +52,16 @@ export async function getStaticProps() {
 }
 
 // Function musste 2x angelegt werden, da compilieren mit ungenutzen Var nicht mgl.
-export default function baeder({ grusz, time, baederWeb }) {
+export default function baeder({ grusz, baederWeb }) {
   //
   return (
     <Layout title="Baden gehen... " description="">
       <div className="site-main">
-        {grusz} - es ist {time}
+        {grusz}
+        {/* <br/>es ist {time} */}
         <br />
-        Ma&szlig;stab:
-        {/* console.log(length(200, 'm').to('in')) */}
+        {/* Maßstab fehlt in Karte: console.log(length(200, 'm').to('in')) */}
         <br />
-        <br />
-        {/* {JSON.stringify(news)} */}
-        {/* <NewsList news={news} title="aktuelle Meldungen" /> */}
         <LocationFinder baederWeb={baederWeb} />
         <BaederList
           baederWeb={baederWeb}

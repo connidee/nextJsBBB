@@ -1,7 +1,13 @@
+// Teil der Seite Berlin geht baden...
 import Link from 'next/link';
 import BadItem from './BadItem';
 
+// übergeordnete Seite zu den einzelnen Bädern
 export default function BadList({ baederWeb, title = '' }) {
+  /* 
+  da die Bad-ID in den bereit gestellten Daten von den Bild-ID abweicht, 
+  wird hier mit einem work-around gearbeitet 
+  */
   let countBadNo = 0;
 
   return (

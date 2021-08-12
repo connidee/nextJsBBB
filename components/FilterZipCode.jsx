@@ -1,3 +1,4 @@
+// Teil der Seite PLZ- und Bezirkssuche...
 import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import LoadingSpinner from './LoadingSpinner';
@@ -7,6 +8,7 @@ const PLZFinder = dynamic(() => import('@/components/PLZFinder'), {
   ssr: false,
 });
 
+// Filter-Bereich auf der Seite PLZ-Suche
 export default function FilterZipCode() {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
@@ -48,11 +50,6 @@ export default function FilterZipCode() {
     <LoadingSpinner />;
     return null;
   }
-
-  // const filteredTerm = getFilteredTerm(
-  //   search
-  // );
-  // const districtsCounted = filteredTerm.length;
 
   return (
     <>
@@ -96,8 +93,8 @@ export default function FilterZipCode() {
       <article id="plz-svg">
         {/*
         #################################################################################
-        +++ !!! svg musste leider direkt eingebettet werden. Am besten ist Zuklappen !!! ++++
-        
+        +++ !!! svg musste leider direkt eingebettet werden. Am besten ist Zuklappen !!! ++++        
+        #################################################################################
         */}
         <svg
           onClick={(e) => {

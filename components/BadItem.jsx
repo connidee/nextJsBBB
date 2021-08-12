@@ -1,12 +1,15 @@
-// https://www.badestellen.berlin.de/#/
-// Video: https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/
+/* 
+Teil der Seite Berlin geht baden...
 
-// https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php
+Wenn Daten zur Verfügung stehen, dann sollen sie eigentlich von hier kommen:
+https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php
+https://www.badestellen.berlin.de/#/ (Bild-Quelle und zufälliges Vorbild)
+Video: https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/
+Video: <iframe width="560" height="315" src="https://www.youtube.com/embed/G02JLwsBe4A?start=6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://www.umweltbundesamt.de/wasserqualitaet-in-badegewaessern#wie-erhalte-ich-informationen-zur-aktuellen-badegewasserqualitat
+*/
 
-// https://www.umweltbundesamt.de/wasserqualitaet-in-badegewaessern#wie-erhalte-ich-informationen-zur-aktuellen-badegewasserqualitat
-
-// Video: <iframe width="560" height="315" src="https://www.youtube.com/embed/G02JLwsBe4A?start=6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+// Infos zu den gelisteten Bädern werden ausgegeben
 export default function BadItem({ geometry, properties, countBadNo }) {
   return (
     <article className="bad-item">
@@ -34,10 +37,7 @@ export default function BadItem({ geometry, properties, countBadNo }) {
           />
         </p>
         <p>
-          Qualität:{' '}
-          {/* {properties.data.farbe.substring(
-            properties.data.farbe.indexOf('.') + 1
-          )} */}
+          Qualität:&nbsp;
           {properties.data.farbe.split('.')[0]}
           <br />
           Temperatur: {properties.data.temp} °C
@@ -50,6 +50,7 @@ export default function BadItem({ geometry, properties, countBadNo }) {
           Escherichia coli: {properties.data.eco}/ 100 ml
         </p>
         <p className="bad-item__description">
+          Standort (Geo-Daten): <br />
           {geometry.coordinates[1]}, {geometry.coordinates[0]}
         </p>
       </div>

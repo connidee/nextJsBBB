@@ -1,3 +1,4 @@
+// das allen Seiten zu Grunde liegende Layout
 import Head from 'next/head';
 import Header from './Header';
 import Main from './Main';
@@ -8,7 +9,10 @@ import { NextScript } from 'next/document';
 export default function Layout({ description, title, children }) {
   return (
     <>
-      {/* Head gibt den Titel im Reiter der WebSite aus */}
+      {/* 
+      Head mit meta-Daten
+      title im Head gibt den Titel im Reiter der WebSite aus 
+      */}
       <Head>
         <title>{title || 'NextJS'}</title>
         <meta

@@ -1,6 +1,4 @@
-// node-geonames installiert -> zum Fertigstellen siehe:
-// https://www.npmjs.com/package/node-geonames-client
-
+// Startseite - Home
 import Layout from '../components/Layout';
 import welcome from '@/img/willkommen.png';
 import Image from 'next/image';

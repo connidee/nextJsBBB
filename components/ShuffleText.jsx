@@ -1,9 +1,10 @@
+// Teil der Fun-Stuff-Seite
 // https://www.zitate-und-sprichwoerter.com/konfuzius
 
 import { useEffect, useState } from 'react';
 import { useDebouncedValue } from '../hooks/useDebouncedValue';
 
-// liest den schon geshuffelten Text aus dem api-Unterverzeichnis aus
+// liest den schon geshuffelten Text der shuffletext.js aus dem api-Verzeichnis aus
 export default function ShuffleText() {
   // zum Einlesen des Textes von der Seite und Ausgeben des geshuffelten Textes
   const [text, setText] = useState('');
@@ -55,7 +56,7 @@ export default function ShuffleText() {
       </p>
       {shuffledText && (
         <strong className="shuffled-text">
-          {/* animiert */}
+          {/* animiert -> entfernt leider alle Leerzeichen */}
           {/* {[...shuffledText].map((char, index) => (
           <span
             key={Math.random()}

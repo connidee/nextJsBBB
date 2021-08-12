@@ -1,4 +1,4 @@
-// import Image from 'next/image';
+// Teil des Layouts -> Beginn des Body -> Header-Bereich der Seite
 import Navigation from './Navigation';
 
 export default function Header({ title }) {

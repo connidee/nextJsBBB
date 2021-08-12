@@ -1,3 +1,4 @@
+// Fun-Stuff-Seite
 import Layout from '../components/Layout';
 import ShuffleText from '../components/ShuffleText';
 

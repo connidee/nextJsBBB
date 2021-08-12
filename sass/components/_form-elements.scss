@@ -10,7 +10,6 @@ dl {
 }
 dd {
   margin: 0;
-  // padding-left: 1rem;
 }
 dl dd {
   margin-bottom: 0.1em;
@@ -20,6 +19,7 @@ a[href^='tel'] {
   white-space: nowrap;
 }
 
+// Variante Fieldset
 .fieldset {
   border-radius: 0.5rem;
   border: 1px solid var(--text-color);
