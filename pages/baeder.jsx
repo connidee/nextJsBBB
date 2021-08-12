@@ -12,7 +12,7 @@ Dateiendung fällt weg, hier hat das Modul .js im Namen(!). ) */
 // ################## aus standorte.jsx #########################
 import dynamic from 'next/dynamic';
 /* dynamisches Laden von: https://nextjs.org/docs/advanced-features/dynamic-import */
-const LocationFinder = dynamic(() => import('@/components/LocationFinder'), {
+const LocationFinder = dynamic(() => import('@/components/BadFinder'), {
   ssr: false,
 });
 // ############ Ende aus Standorte.jsx ###################
