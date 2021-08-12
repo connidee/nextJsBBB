@@ -1,11 +1,11 @@
 // https://www.badestellen.berlin.de/#/
 // Video: https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/
 
-// https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php/detail/4
+// https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php
 
-//https://www.umweltbundesamt.de/wasserqualitaet-in-badegewaessern#wie-erhalte-ich-informationen-zur-aktuellen-badegewasserqualitat
+// https://www.umweltbundesamt.de/wasserqualitaet-in-badegewaessern#wie-erhalte-ich-informationen-zur-aktuellen-badegewasserqualitat
 
-// <iframe width="560" height="315" src="https://www.youtube.com/embed/G02JLwsBe4A?start=6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+// Video: <iframe width="560" height="315" src="https://www.youtube.com/embed/G02JLwsBe4A?start=6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 export default function BadItem({ geometry, properties, countBadNo }) {
   return (

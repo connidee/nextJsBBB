@@ -1,14 +1,58 @@
+import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
-import {} from 'react/cjs/react.production.min';
-import { useToggle } from '../hooks/useToggle';
-import PLZFinder from './PLZFinder';
+import LoadingSpinner from './LoadingSpinner';
 
-// Variable und zugehörige Set-Funktion werden übergeben
+/* dynamisches Laden von: https://nextjs.org/docs/advanced-features/dynamic-import */
+const PLZFinder = dynamic(() => import('@/components/PLZFinder'), {
+  ssr: false,
+});
 
 export default function FilterZipCode() {
-  const [zipcode, setZipcode] = useState('');
-  const [filtered, setFiltered] = useState('');
-  const [disableElement, toogleDisableElement] = useToggle(false);
+  const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  // evtl. später ergänzen: setzen des Seitentitels mit useEffect
+
+  // muss als erstes ausgeführt werden -> vor dem Überschreiben
+  // -> Ersetzen eines vorherigen Suchbegriffs beim Laden des Fensters
+  useEffect(() => {
+    const url = new URL(window.location.href);
+
+    const oldSearch = url.searchParams.get('search');
+    if (oldSearch) {
+      setSearch(oldSearch);
+    }
+
+    // "Ladevorgang" ist beendet
+    setLoading(false);
+  }, []);
+
+  // Laden des Window mit der Suchbegriffseingabe
+  useEffect(() => {
+    // 1. Konstruiere eine url auf Basis der aktuellen URL (window.location).
+    const url = new URL(window.location.href);
+
+    // 2. Suchwort -> Löschen eines evtl vorhanden Anhangs ähnlich ?id=...
+    url.searchParams.delete('searchTerm');
+    if (search) {
+      url.searchParams.set('searchTerm', search);
+    }
+    // 3. Ändere den aktuellen URL-Eintrag im Adressfeld (window.history).
+    window.history.replaceState({}, '', url);
+  }, [search]);
+
+  /*
+  Stelle beim ersten Laden ggf. den Loadingspinner dar 
+  */
+  if (loading) {
+    <LoadingSpinner />;
+    return null;
+  }
+
+  // const filteredTerm = getFilteredTerm(
+  //   search
+  // );
+  // const districtsCounted = filteredTerm.length;
 
   return (
     <>
@@ -16,24 +60,22 @@ export default function FilterZipCode() {
       <form className="plzsearch" onSubmit={(e) => e.preventDefault()}>
         <fieldset className="fieldset">
           <div className="plzgesucht">
-            <label htmlFor="searchFixZC">
-              PLZ oder Bezirk suchen:&nbsp;&nbsp;
-            </label>
+            <label htmlFor="search">PLZ oder Bezirk suchen:&nbsp;&nbsp;</label>
             <input
-              id="searchFixZC"
+              id="search"
               type="search"
-              value={zipcode}
+              value={search}
               // Aktion ist direkt ans Eingabefeld gekopplet -> Suche beginnt unmittelbar
               // s. JS-Document/ Abs. fetch: Hilfsfunktionen Debounce und Throttle
               // -> debounce: lässt alle Aufrufe zurückprallen bis eine bestimmte Zeit vergangen ist
-              onChange={(e) => setZipcode(e.target.value)}
+              onChange={(e) => setSearch(e.target.value)}
             ></input>
             {/* Button zum Zurücksetzen  */}
             <button
               id="btn-zc"
-              onClick={() => setZipcode('')}
+              onClick={() => setSearch('')}
               type="button"
-              disabled={zipcode === ''}
+              disabled={search === ''}
             >
               {/* ACHTUNG: leicht zu übersehen -> im Buton steht ein Mal-Zeichen! */}
               &times;
@@ -54,13 +96,14 @@ export default function FilterZipCode() {
       <article id="plz-svg">
         {/*
         #################################################################################
-        +++ !!! svg musste leider direkt eingebettet werden. Am besten ist Zuklappen !!! ++++        
+        +++ !!! svg musste leider direkt eingebettet werden. Am besten ist Zuklappen !!! ++++
+        
         */}
         <svg
           onClick={(e) => {
             // console.log('e.target: ', e.target.id, document.getElementsByTagName("path"));
             if (e.target.id) {
-              setZipcode(e.target.id);
+              setSearch(e.target.id);
               document.getElementById(e.target.id).setAttribute('fill', 'gold');
             }
           }}
@@ -1416,7 +1459,7 @@ export default function FilterZipCode() {
          Ausgabe der Straßenkarte erfolgt in ein div 
          -> http://www.dynamicdrive.com/dynamicindex17/ajaxcontent.htm
         */}
-        <PLZFinder filtered={filtered} />
+        <PLZFinder search={search} />
       </article>
     </>
   );

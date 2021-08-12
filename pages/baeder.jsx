@@ -22,20 +22,20 @@ const LocationFinder = dynamic(() => import('@/components/BadFinder'), {
 // entweder in der export-Funktion oder schon hier die Daten aus der lokalen Datei auslesen
 // -> const baederData = require('')... -> mühsam
 
+const baederWebData = require('@/library/berlinerBaeder.json');
+
 export async function getStaticProps() {
   // code, der nur auf dem Server läuft und im Browser nicht zu sehen ist
   let baederWeb = [];
 
   // Auslesen von im Web bereit gestellten Daten des LaGeSo Berlin
   try {
-    const response = await fetch(
-      // beliebte News-API:
-      // `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=de&category=technology&pageSize=10`// Bäder-API des LaGeSo Berlin:
-      // urlWeb
-      `https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php/index/all.gjson?q=`
-    );
+    // const response = await fetch(
+    //   // urlWeb
+    //   `https://www.berlin.de/lageso/gesundheit/gesundheitsschutz/badegewaesser/liste-der-badestellen/index.php/index/all.gjson?q=`
+    // );
 
-    const baederWebData = await response.json();
+    // const baederWebData = await response.json();
 
     baederWeb = baederWebData.features;
 
