@@ -52,6 +52,16 @@ export function shuffle([...arr]) {
   return arr;
 }
 
+/*
+alternative Array-Shuffler -> eingesetzt für Bilddateien
+*/
+export function shuffleArray(arr) {
+  return arr
+    .map((a) => [Math.random(), a])
+    .sort((a, b) => a[0] - b[0])
+    .map((a) => a[1]);
+}
+
 /* 
 Ersetzen von Zeichen in Strings 
 */

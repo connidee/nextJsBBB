@@ -1,3 +1,4 @@
+// Text-Shuffler -> mit Helfer !
 import { replace, shuffle } from '../../library/helpers';
 
 // s.a. https://www.npmjs.com/package/react-shuffle-text

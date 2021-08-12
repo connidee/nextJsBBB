@@ -30,6 +30,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/no-children-prop': 'off',
     'jsx-a11y/no-onchange': 'off',
+    'import/no-anonymous-default-export': 'off',
     '@next/next/no-img-element': 'off',
     'jsx-a11y/anchor-is-valid': [
       'error',

@@ -22,16 +22,18 @@ export default function home() {
           Viel Vergnügen beim Stöbern!
         </p>
         <Image
-          // Wenn man ein Bild, das auf dem Server liegt, zuvor importiert
-          // und bei src einsetzt, kann man width und height weglassen.
+          /* 
+          enn man ein Bild, das auf dem Server liegt, zuvor importiert
+          und bei src einsetzt, kann man width und height weglassen.
+          */
           src={welcome}
           // width={5184}
           // height={3456}
           sizes="(max-width: 52rem) 90vw, 50rem"
           layout="responsive"
           placeholder="blur"
-          alt="Hong-Kong mit Bergen im Hintergrund"
-          title="Hong-Kong mit Bergen im Hintergrund"
+          alt="Willkommen multilingual"
+          title="Willkommen multilingual"
         />
       </div>
     </Layout>
